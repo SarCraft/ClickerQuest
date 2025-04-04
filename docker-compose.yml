@@ -9,7 +9,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - app-network
+      - clickerquest-network
 
   backend:
     container_name: backend
@@ -18,7 +18,7 @@ services:
     ports:
       - "4000:4000"
     networks:
-      - app-network
+      - clickerquest-network
 
   postgres:
     image: postgres:16
@@ -33,7 +33,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - app-network
+      - clickerquest-network
 
   pgadmin:
     image: dpage/pgadmin4
@@ -47,7 +47,7 @@ services:
     depends_on:
       - postgres
     networks:
-      - app-network
+      - clickerquest-network
 
   nginx:
     image: nginx:latest
@@ -62,11 +62,11 @@ services:
       - frontend
       - backend
     networks:
-      - app-network
+      - clickerquest-network
 
 volumes:
   pgdata:
 
 networks:
-  app-network:
+  clickerquest-network:
     driver: bridge
